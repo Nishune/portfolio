@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+/* Custom CSS variables för smooth transitions */
+:root {
+  --transition-duration: 300ms;
+}
+
+/* Ensure smooth color transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: var(--transition-duration);
+  transition-timing-function: ease-in-out;
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
