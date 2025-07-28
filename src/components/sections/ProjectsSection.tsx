@@ -30,7 +30,7 @@ const projects: Project[] = [
     title: "Wordle Fullstack",
     description:
       "En fullstack implementation av det populära ordspelet Wordle med anpassningsbar svårighetsgrad, poängsystem och leaderboard.",
-    image: "/projects/wordle-screenshot.png", // Du behöver lägga till denna bild
+    image: "/projects/wordle-fullstack.jpg", // Du behöver lägga till denna bild
     technologies: [
       "React 19",
       "TypeScript",
@@ -56,7 +56,7 @@ const projects: Project[] = [
     title: "Hacker Escape Room Website",
     description:
       "En modern webbplats för Hacker Escape Room med fokus på användarupplevelse och responsiv design. Byggd med ren HTML, SCSS och JavaScript.",
-    image: "/projects/hacker-escape-room-screenshot.png",
+    image: "/projects/hacker-escape-room-html-css.jpg",
     technologies: ["HTML5", "SCSS", "JavaScript", "CSS3", "Responsive Design"],
     features: [
       "Modern och ren design",
@@ -73,7 +73,7 @@ const projects: Project[] = [
     title: "Kino Fullstack - Grupprojekt",
     description:
       "En fullstack biografapplikation utvecklad i grupp med 7 utvecklare. Projektet inkluderar användarhantering, filmbokning, och deployment. Fokus på Git-workflow med pull requests och kodgranskning.",
-    image: "/projects/kino-fullstack-screenshot.png",
+    image: "/projects/kino-bio-fullstack.jpg",
     technologies: [
       "Next.js",
       "TypeScript",
@@ -101,7 +101,7 @@ const projects: Project[] = [
     title: "Kino Backend API - Grupprojekt",
     description:
       "En omfattande REST API för biografsystem utvecklad i grupp. Inkluderar användarautentisering, filmrecensioner, visningar och komplett API-dokumentation.",
-    image: "/projects/kino-backend-screenshot.png",
+    image: "/projects/kino-bio-backend-restapi.jpg",
     technologies: [
       "JavaScript",
       "Node.js",
@@ -128,7 +128,7 @@ const projects: Project[] = [
     title: "Kino Grupprojekt - Projektmetoder",
     description:
       "Ett biografprojekt med fokus på agila utvecklingsmetoder, Scrum och Kanban. Träning på projektorganisation, issuehantering och teamsamarbete inom mjukvaruutveckling.",
-    image: "/projects/kino-project-management-screenshot.png",
+    image: "/projects/kino-bio-project.jpg",
     technologies: [
       "JavaScript",
       "SCSS",
@@ -233,23 +233,13 @@ export default function ProjectsSection() {
               className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
               {/* Projekt-bild */}
-              <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
-                {/* Placeholder tills du lägger till bilden */}
-                <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-400">
-                  <div className="text-center">
-                    <Database className="h-12 w-12 mx-auto mb-2" />
-                    <p className="text-sm">Screenshot kommer här</p>
-                    <p className="text-xs">({project.image})</p>
-                  </div>
-                </div>
-                {/* Uncomment när du har lagt till bilden:
+              <div className="relative h-64 bg-gray-200 dark:bg-gray-700">
                 <Image
                   src={project.image}
                   alt={`${project.title} screenshot`}
                   fill
                   className="object-cover"
                 />
-                */}
               </div>
 
               <div className="p-6">
