@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import {
   ExternalLink,
   Github,
@@ -151,6 +154,30 @@ const projects: Project[] = [
 ];
 
 export default function ProjectsSection() {
+  // Pagination state
+  const [visibleCount, setVisibleCount] = useState(() => {
+    // Responsive initial count: 3 på mobil, 4 på desktop
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 768 ? 3 : 4;
+    }
+    return 4; // Default för server-side rendering
+  });
+
+  // Responsive items per page
+  const getItemsPerPage = () => {
+    if (typeof window !== "undefined") {
+      return window.innerWidth < 768 ? 3 : 4;
+    }
+    return 4;
+  };
+
+  const showMoreProjects = () => {
+    const itemsPerPage = getItemsPerPage();
+    setVisibleCount((prev) => prev + itemsPerPage);
+  };
+
+  const visibleProjects = projects.slice(0, visibleCount);
+  const hasMoreProjects = visibleCount < projects.length;
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case "fullstack":
@@ -200,7 +227,7 @@ export default function ProjectsSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <div
               key={project.id}
               className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
@@ -305,6 +332,18 @@ export default function ProjectsSection() {
             </div>
           ))}
         </div>
+
+        {/* Visa fler-knapp */}
+        {hasMoreProjects && (
+          <div className="text-center mt-8">
+            <button
+              onClick={showMoreProjects}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 font-medium"
+            >
+              Visa fler projekt ({projects.length - visibleCount} kvar)
+            </button>
+          </div>
+        )}
 
         {/* Call to action för fler projekt */}
         <div className="text-center mt-12">
