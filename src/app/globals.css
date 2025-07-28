@@ -1,8 +1,15 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Custom CSS variables för smooth transitions */
+/* Enable dark mode class strategy */
 :root {
   --transition-duration: 300ms;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 /* Ensure smooth color transitions */

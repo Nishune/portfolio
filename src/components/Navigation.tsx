@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme } from '@/contexts/ThemeContext';
+import { useState } from "react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   const menuItems = [
-    { href: '#home', label: 'Hem' },
-    { href: '#about', label: 'Om mig' },
-    { href: '#projects', label: 'Projekt' },
-    { href: '#contact', label: 'Kontakt' },
+    { href: "#home", label: "Hem" },
+    { href: "#about", label: "Om mig" },
+    { href: "#projects", label: "Projekt" },
+    { href: "#contact", label: "Kontakt" },
   ];
 
   const handleMenuClick = (href: string) => {
@@ -20,7 +20,7 @@ export default function Navigation() {
     // Smooth scroll till sektionen
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -54,11 +54,14 @@ export default function Navigation() {
           <div className="flex items-center space-x-2">
             {/* Theme Toggle Button */}
             <button
-              onClick={toggleTheme}
+              onClick={() => {
+                console.log("Theme toggle clicked, current theme:", theme);
+                toggleTheme();
+              }}
               className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
               aria-label="Toggle theme"
             >
-              {theme === 'light' ? (
+              {theme === "light" ? (
                 <Moon className="h-5 w-5" />
               ) : (
                 <Sun className="h-5 w-5" />
