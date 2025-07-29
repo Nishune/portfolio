@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: "https://rikard-engstrom.vercel.app/sitemap.xml", // Uppdatera med din domän
+    sitemap: "https://rikard-engstrom.vercel.app/sitemap.xml",
   };
 }

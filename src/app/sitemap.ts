@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://rikard-engstrom.vercel.app"; // Uppdatera med din faktiska domän
+  const baseUrl = "https://rikard-engstrom.vercel.app";
 
   return [
     {
