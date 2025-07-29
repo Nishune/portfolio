@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Mail, Phone, Send, CheckCircle, AlertCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -52,9 +54,7 @@ export default function ContactSection() {
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error sending email:", error);
-      setError(
-        "Det gick inte att skicka meddelandet. Vänligen försök igen eller kontakta mig direkt via e-post."
-      );
+      setError(t("contact.error"));
     } finally {
       setIsSubmitting(false);
     }
@@ -68,11 +68,11 @@ export default function ContactSection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Kontakta mig
+            {t("contact.title")}
           </h2>
           <div className="w-24 h-1 bg-blue-600 dark:bg-blue-400 mx-auto rounded-full mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
-            Har du en spännande möjlighet? Låt oss prata!
+            {t("contact.description")}
           </p>
         </div>
 
@@ -84,23 +84,22 @@ export default function ContactSection() {
               <div className="text-center py-8">
                 <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                  Meddelande skickat!
+                  {t("contact.success")}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
-                  Ditt meddelande har skickats till mig. Jag återkommer så snart
-                  som möjligt!
+                  {t("contact.successMessage")}
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
                   className="mt-4 text-blue-600 dark:text-blue-400 hover:underline"
                 >
-                  Skicka ett nytt meddelande
+                  {t("contact.newMessage")}
                 </button>
               </div>
             ) : (
               <>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
-                  Skicka ett meddelande
+                  {t("contact.formTitle")}
                 </h3>
 
                 {/* Error message */}
@@ -121,7 +120,7 @@ export default function ContactSection() {
                       htmlFor="name"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >
-                      Namn *
+                      {t("contact.name")} *
                     </label>
                     <input
                       type="text"
@@ -131,7 +130,7 @@ export default function ContactSection() {
                       value={formData.name}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
-                      placeholder="Ditt namn"
+                      placeholder={t("contact.namePlaceholder")}
                     />
                   </div>
 
@@ -140,7 +139,7 @@ export default function ContactSection() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >
-                      E-postadress *
+                      {t("contact.email")} *
                     </label>
                     <input
                       type="email"
@@ -150,7 +149,7 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors"
-                      placeholder="din.email@exempel.se"
+                      placeholder={t("contact.emailPlaceholder")}
                     />
                   </div>
 
@@ -159,7 +158,7 @@ export default function ContactSection() {
                       htmlFor="message"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
                     >
-                      Meddelande *
+                      {t("contact.message")} *
                     </label>
                     <textarea
                       id="message"
@@ -169,7 +168,7 @@ export default function ContactSection() {
                       value={formData.message}
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white transition-colors resize-none"
-                      placeholder="Berätta om ditt projekt eller bara säg hej..."
+                      placeholder={t("contact.messagePlaceholder")}
                     />
                   </div>
 
@@ -181,12 +180,12 @@ export default function ContactSection() {
                     {isSubmitting ? (
                       <>
                         <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        Skickar...
+                        {t("contact.sending")}
                       </>
                     ) : (
                       <>
                         <Send className="h-5 w-5" />
-                        Skicka meddelande
+                        {t("contact.send")}
                       </>
                     )}
                   </button>
@@ -198,7 +197,7 @@ export default function ContactSection() {
           {/* Diskret kontaktinfo som backup */}
           <div className="text-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-              Eller kontakta mig direkt:
+              {t("contact.directContact")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
               <a

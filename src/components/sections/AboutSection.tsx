@@ -1,4 +1,7 @@
+import { useLanguage } from "@/contexts/LanguageContext";
+
 export default function AboutSection() {
+  const { t } = useLanguage();
   return (
     <section
       id="about"
@@ -7,60 +10,27 @@ export default function AboutSection() {
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Om mig
+            {t("about.title")}
           </h2>
           <div className="w-24 h-1 bg-blue-600 dark:bg-blue-400 mx-auto rounded-full"></div>
         </div>
 
         <div className="space-y-6 text-left">
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-            Jag heter{" "}
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
-              Rikard Engström
-            </span>
-            , född 1989, och är 36 år. Under tolv år arbetade jag inom
-            Försvarsmakten, främst i den insatsberedda skyddsstyrkan, men även
-            med tunga fordon inom fältarbetarplutonen. Den tiden formade mig som
-            person. Jag lärde mig att arbeta under press, samarbeta effektivt
-            och att alltid sträva efter att utvecklas.
+            {t("about.paragraph1")}
           </p>
 
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-            Efter avslutad militär tjänst valde jag att rikta om mitt fokus och
-            började studera
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
-              {" "}
-              Digital tjänsteutveckling
-            </span>{" "}
-            vid Luleå tekniska universitet. Där fick jag en bred förståelse för
-            hur IT kan användas för att utveckla och effektivisera
-            organisationer. Jag fördjupade mig inom användarupplevelse (UX),
-            datadriven utveckling och hur digitala tjänster kan skapa verkligt
-            värde för både användare och företag.
+            {t("about.paragraph2")}
           </p>
 
           <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-            Det var dock under studietiden jag upptäckte mitt verkliga intresse:
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
-              {" "}
-              programmering
-            </span>
-            . För att gå djupare in i det valde jag att läsa vidare till
-            Fullstackutvecklare inom Java och JavaScript på Lernia
-            Yrkeshögskola, där jag nu bygger vidare på mina tekniska
-            färdigheter.
+            {t("about.paragraph3")}
           </p>
 
           <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed italic">
-              Som person är jag <span className="font-semibold">driven</span>,{" "}
-              <span className="font-semibold">nyfiken</span> och
-              <span className="font-semibold"> lösningsorienterad</span>.
-              Kollegor beskriver mig som en person med hög motivation, stor
-              hjälpsamhet och en förmåga att sprida energi i gruppen. Jag
-              strävar alltid efter att utvecklas, både individuellt och
-              tillsammans med teamet, och jag tror starkt på att arbetsglädje är
-              en nyckel till framgång.
+              {t("about.quote")}
             </p>
           </div>
         </div>
@@ -72,7 +42,7 @@ export default function AboutSection() {
               12+
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
-              År inom Försvarsmakten
+              {t("about.military")}
             </div>
           </div>
 
@@ -81,7 +51,7 @@ export default function AboutSection() {
               UX
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
-              Användarupplevelse
+              {t("about.ux")}
             </div>
           </div>
 
@@ -90,7 +60,7 @@ export default function AboutSection() {
               Full Stack
             </div>
             <div className="text-sm text-gray-600 dark:text-gray-400 uppercase tracking-wide">
-              Java & JavaScript
+              {t("about.fullstack")}
             </div>
           </div>
         </div>

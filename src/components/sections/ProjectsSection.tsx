@@ -11,9 +11,11 @@ import {
   Users,
 } from "lucide-react";
 import { projects } from "@/data/projectsData";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function ProjectsSection() {
   const [visibleCount, setVisibleCount] = useState(4);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const updateVisibleCount = () => {
@@ -77,13 +79,11 @@ export default function ProjectsSection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Mina projekt
+            {t("projects.title")}
           </h2>
           <div className="w-24 h-1 bg-blue-600 dark:bg-blue-400 mx-auto rounded-full mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            En samling av projekt jag har utvecklat under min utbildning, som
-            visar mina färdigheter inom fullstack-utveckling, frontend-design
-            och backend-arkitektur.
+            {t("projects.description")}
           </p>
         </div>
 
@@ -100,6 +100,7 @@ export default function ProjectsSection() {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
+                  priority
                 />
               </div>
 
@@ -119,12 +120,12 @@ export default function ProjectsSection() {
                 </div>
 
                 <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                  {project.description}
+                  {t(project.descriptionKey)}
                 </p>
 
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                    Teknologier:
+                    {t("projects.technologies")}
                   </h4>
                   <div className="flex flex-wrap gap-1">
                     {project.technologies.map((tech) => (
@@ -140,15 +141,17 @@ export default function ProjectsSection() {
 
                 <div className="mb-6">
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
-                    Huvudfunktioner:
+                    {t("projects.features")}
                   </h4>
                   <ul className="text-sm text-gray-600 dark:text-gray-300 space-y-1">
-                    {project.features.slice(0, 3).map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <span className="text-blue-500 mr-2">•</span>
-                        {feature}
-                      </li>
-                    ))}
+                    {project.featuresKeys
+                      .slice(0, 3)
+                      .map((featureKey, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="text-blue-500 mr-2">•</span>
+                          {t(featureKey)}
+                        </li>
+                      ))}
                   </ul>
                 </div>
 
@@ -185,14 +188,15 @@ export default function ProjectsSection() {
               onClick={showMoreProjects}
               className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors duration-200 font-medium"
             >
-              Visa fler projekt ({projects.length - visibleCount} kvar)
+              {t("projects.showMore")} ({projects.length - visibleCount}{" "}
+              {t("projects.remaining")})
             </button>
           </div>
         )}
 
         <div className="text-center mt-12">
           <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Fler projekt kommer att läggas till över tid.
+            {t("projects.morecoming")}
           </p>
           <a
             href="https://github.com/Nishune"
@@ -201,7 +205,7 @@ export default function ProjectsSection() {
             className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors duration-200"
           >
             <Github className="h-5 w-5" />
-            Se alla projekt på GitHub
+            {t("projects.viewAll")}
           </a>
         </div>
       </div>

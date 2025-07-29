@@ -1,18 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, Languages } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { language, toggleLanguage, t } = useLanguage();
 
   const menuItems = [
-    { href: "#home", label: "Hem" },
-    { href: "#about", label: "Om mig" },
-    { href: "#projects", label: "Projekt" },
-    { href: "#contact", label: "Kontakt" },
+    { href: "#home", label: t("nav.home") },
+    { href: "#about", label: t("nav.about") },
+    { href: "#projects", label: t("nav.projects") },
+    { href: "#contact", label: t("nav.contact") },
   ];
 
   const handleMenuClick = (href: string) => {
@@ -69,6 +71,16 @@ export default function Navigation() {
               )}
             </button>
 
+            <button
+              onClick={toggleLanguage}
+              className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+              aria-label="Toggle language"
+            >
+              <span className="text-sm font-medium">
+                {language === "sv" ? "EN" : "SV"}
+              </span>
+            </button>
+
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -97,6 +109,30 @@ export default function Navigation() {
                   {item.label}
                 </button>
               ))}
+
+              <div className="flex items-center justify-center space-x-4 pt-2 border-t border-gray-200 dark:border-gray-700">
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                  aria-label="Toggle theme"
+                >
+                  {theme === "light" ? (
+                    <Moon className="h-5 w-5" />
+                  ) : (
+                    <Sun className="h-5 w-5" />
+                  )}
+                </button>
+
+                <button
+                  onClick={toggleLanguage}
+                  className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+                  aria-label="Toggle language"
+                >
+                  <span className="text-sm font-medium">
+                    {language === "sv" ? "EN" : "SV"}
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         )}

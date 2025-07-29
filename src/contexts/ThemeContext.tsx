@@ -23,12 +23,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    // Kolla om användaren har en sparad preferens
+
     const savedTheme = localStorage.getItem("theme") as Theme;
     if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
       setTheme(savedTheme);
     } else {
-      // Använd systempreferens som default
       const prefersDark = window.matchMedia(
         "(prefers-color-scheme: dark)"
       ).matches;
@@ -39,7 +38,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (!mounted) return;
 
-    // Uppdatera DOM och localStorage när temat ändras
     const root = document.documentElement;
 
     if (theme === "dark") {
@@ -51,16 +49,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     localStorage.setItem("theme", theme);
-    console.log("Theme changed to:", theme); // Debug log
   }, [theme, mounted]);
 
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
-    console.log("Toggling theme from", theme, "to", newTheme); // Debug log
+
     setTheme(newTheme);
   };
 
-  // Förhindra hydration mismatch
   if (!mounted) {
     return (
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
