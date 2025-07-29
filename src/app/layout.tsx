@@ -29,11 +29,28 @@ export const metadata: Metadata = {
     "Web Development",
   ],
   authors: [{ name: "Rikard Engström" }],
+  metadataBase: new URL("https://rikard-engstrom.vercel.app"),
   openGraph: {
     title: "Rikard Engström - Fullstack Developer",
-    description: "Portfolio för Rikard Engström - Fullstack utvecklare",
+    description: "Portfolio för Rikard Engström - Fullstack utvecklare med passion för moderna webbapplikationer och digitala upplevelser.",
     type: "website",
     locale: "sv_SE",
+    url: "https://rikard-engstrom.vercel.app",
+    siteName: "Rikard Engström Portfolio",
+    images: [
+      {
+        url: "/projects/metapicture.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Rikard Engström - Fullstack Developer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Rikard Engström - Fullstack Developer",
+    description: "Portfolio för Rikard Engström - Fullstack utvecklare med passion för moderna webbapplikationer och digitala upplevelser.",
+    images: ["/projects/metapicture.jpg"],
   },
 };
 
