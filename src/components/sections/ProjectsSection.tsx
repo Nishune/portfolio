@@ -23,14 +23,13 @@ interface Project {
   category: "fullstack" | "frontend" | "backend" | "project-management";
 }
 
-// Här kan du lägga till fler projekt senare
 const projects: Project[] = [
   {
     id: "wordle-fullstack",
     title: "Wordle Fullstack",
     description:
       "En fullstack implementation av det populära ordspelet Wordle med anpassningsbar svårighetsgrad, poängsystem och leaderboard.",
-    image: "/projects/wordle-fullstack.jpg", // Du behöver lägga till denna bild
+    image: "/projects/wordle-fullstack.jpg",
     technologies: [
       "React 19",
       "TypeScript",
@@ -150,20 +149,16 @@ const projects: Project[] = [
     githubUrl: "https://github.com/Nishune/Kino_Group_Project",
     category: "project-management",
   },
-  // Du kan lägga till fler projekt här
 ];
 
 export default function ProjectsSection() {
-  // Pagination state
   const [visibleCount, setVisibleCount] = useState(() => {
-    // Responsive initial count: 3 på mobil, 4 på desktop
     if (typeof window !== "undefined") {
       return window.innerWidth < 768 ? 3 : 4;
     }
-    return 4; // Default för server-side rendering
+    return 4;
   });
 
-  // Responsive items per page
   const getItemsPerPage = () => {
     if (typeof window !== "undefined") {
       return window.innerWidth < 768 ? 3 : 4;
@@ -232,7 +227,6 @@ export default function ProjectsSection() {
               key={project.id}
               className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
             >
-              {/* Projekt-bild */}
               <div className="relative h-64 bg-gray-200 dark:bg-gray-700">
                 <Image
                   src={project.image}
@@ -243,7 +237,6 @@ export default function ProjectsSection() {
               </div>
 
               <div className="p-6">
-                {/* Header med kategori */}
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
                     {project.title}
@@ -258,12 +251,10 @@ export default function ProjectsSection() {
                   </span>
                 </div>
 
-                {/* Beskrivning */}
                 <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                   {project.description}
                 </p>
 
-                {/* Teknologier */}
                 <div className="mb-4">
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
                     Teknologier:
@@ -280,7 +271,6 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                {/* Key Features */}
                 <div className="mb-6">
                   <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2">
                     Huvudfunktioner:
@@ -295,7 +285,6 @@ export default function ProjectsSection() {
                   </ul>
                 </div>
 
-                {/* Länkar */}
                 <div className="flex gap-3">
                   <a
                     href={project.githubUrl}
@@ -323,7 +312,6 @@ export default function ProjectsSection() {
           ))}
         </div>
 
-        {/* Visa fler-knapp */}
         {hasMoreProjects && (
           <div className="text-center mt-8">
             <button
@@ -335,7 +323,6 @@ export default function ProjectsSection() {
           </div>
         )}
 
-        {/* Call to action för fler projekt */}
         <div className="text-center mt-12">
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             Fler projekt kommer att läggas till över tid.

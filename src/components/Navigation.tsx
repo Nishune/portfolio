@@ -17,7 +17,6 @@ export default function Navigation() {
 
   const handleMenuClick = (href: string) => {
     setIsMenuOpen(false);
-    // Smooth scroll till sektionen
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -28,14 +27,21 @@ export default function Navigation() {
     <nav className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo/Brand */}
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-bold text-gray-900 dark:text-white">
-              Nishune
-            </h1>
+            <button
+              onClick={() => handleMenuClick("#home")}
+              className="group flex items-center space-x-1 cursor-pointer"
+            >
+              <div className="relative">
+                <h1 className="relative text-xl font-bold px-2 py-1 bg-gradient-to-r from-slate-800 via-blue-800 to-slate-800 dark:from-slate-300 dark:via-blue-300 dark:to-slate-300 bg-clip-text text-transparent group-hover:animate-pulse transition-all duration-300">
+                  <span>Rikard</span>
+                  <span className="ml-2">Engström</span>
+                </h1>
+                <div className="absolute bottom-0 left-2 right-2 h-0.5 bg-gradient-to-r from-slate-800 via-blue-800 to-slate-800 dark:from-slate-300 dark:via-blue-300 dark:to-slate-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+              </div>
+            </button>
           </div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
               {menuItems.map((item) => (
@@ -50,14 +56,9 @@ export default function Navigation() {
             </div>
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
           <div className="flex items-center space-x-2">
-            {/* Theme Toggle Button */}
             <button
-              onClick={() => {
-                console.log("Theme toggle clicked, current theme:", theme);
-                toggleTheme();
-              }}
+              onClick={toggleTheme}
               className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
               aria-label="Toggle theme"
             >
@@ -68,7 +69,6 @@ export default function Navigation() {
               )}
             </button>
 
-            {/* Mobile menu button */}
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -85,7 +85,6 @@ export default function Navigation() {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">

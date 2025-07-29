@@ -21,7 +21,6 @@ export default function ContactSection() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    // Clear error when user starts typing
     if (error) setError(null);
   };
 
@@ -31,7 +30,6 @@ export default function ContactSection() {
     setError(null);
 
     try {
-      // EmailJS configuration from environment variables
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
@@ -45,7 +43,7 @@ export default function ContactSection() {
         from_email: formData.email,
         message: formData.message,
         to_email: "rikardengstrom89@gmail.com",
-        reply_to: formData.email, // Detta gör att "Svara" går till rätt person
+        reply_to: formData.email,
       };
 
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
@@ -68,84 +66,20 @@ export default function ContactSection() {
       className="py-20 bg-gray-50 dark:bg-gray-800 px-4 sm:px-6 lg:px-8"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Kontakta mig
           </h2>
           <div className="w-24 h-1 bg-blue-600 dark:bg-blue-400 mx-auto rounded-full mb-6"></div>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Har du en spännande möjlighet eller bara vill säga hej? Jag skulle
-            älska att höra från dig!
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto">
+            Har du en spännande möjlighet? Låt oss prata!
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Kontaktinformation */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6">
-                Låt oss komma i kontakt
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Jag är alltid öppen för nya möjligheter och samarbeten. Tveka
-                inte att höra av dig!
-              </p>
-            </div>
-
-            {/* Kontaktmetoder */}
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
-                    <Mail className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white">
-                    E-post
-                  </h4>
-                  <a
-                    href="mailto:rikardengstrom89@gmail.com"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
-                  >
-                    rikardengstrom89@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center">
-                    <Phone className="h-6 w-6 text-green-600 dark:text-green-400" />
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-lg font-medium text-gray-900 dark:text-white">
-                    Telefon
-                  </h4>
-                  <a
-                    href="tel:+46730406465"
-                    className="text-green-600 dark:text-green-400 hover:underline"
-                  >
-                    073-040 64 65
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* Call to action */}
-            <div className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-sm">
-              <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
-                Snabb respons
-              </h4>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                Jag svarar vanligtvis inom 24 timmar på alla meddelanden.
-              </p>
-            </div>
-          </div>
-
+        {/* Centrerat formulär med diskret kontaktinfo */}
+        <div className="max-w-2xl mx-auto">
           {/* Kontaktformulär */}
-          <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8">
+          <div className="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 mb-8">
             {isSubmitted ? (
               <div className="text-center py-8">
                 <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
@@ -259,6 +193,32 @@ export default function ContactSection() {
                 </form>
               </>
             )}
+          </div>
+
+          {/* Diskret kontaktinfo som backup */}
+          <div className="text-center mt-8 pt-6 border-t border-gray-200 dark:border-gray-600">
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+              Eller kontakta mig direkt:
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm">
+              <a
+                href="mailto:rikardengstrom89@gmail.com"
+                className="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                <Mail className="h-4 w-4" />
+                rikardengstrom89@gmail.com
+              </a>
+              <span className="hidden sm:block text-gray-300 dark:text-gray-600">
+                |
+              </span>
+              <a
+                href="tel:+46730406465"
+                className="flex items-center gap-2 text-green-600 dark:text-green-400 hover:underline"
+              >
+                <Phone className="h-4 w-4" />
+                073-040 64 65
+              </a>
+            </div>
           </div>
         </div>
       </div>
