@@ -1,9 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, Sun, Moon, Languages } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  trackButtonClick,
+  trackLanguageSwitch,
+  trackThemeSwitch,
+} from "@/hooks/useAnalytics";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,10 +24,23 @@ export default function Navigation() {
 
   const handleMenuClick = (href: string) => {
     setIsMenuOpen(false);
+    trackButtonClick(`Navigation ${href}`, "header");
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleToggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    trackThemeSwitch(newTheme);
+    toggleTheme();
+  };
+
+  const handleToggleLanguage = () => {
+    const newLang = language === "sv" ? "en" : "sv";
+    trackLanguageSwitch(language, newLang);
+    toggleLanguage();
   };
 
   return (
@@ -60,7 +78,7 @@ export default function Navigation() {
 
           <div className="flex items-center space-x-2 flex-1 justify-end">
             <button
-              onClick={toggleTheme}
+              onClick={handleToggleTheme}
               className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
               aria-label="Toggle theme"
             >
@@ -72,7 +90,7 @@ export default function Navigation() {
             </button>
 
             <button
-              onClick={toggleLanguage}
+              onClick={handleToggleLanguage}
               className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
               aria-label="Toggle language"
             >

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Mail, Phone, Send, CheckCircle, AlertCircle } from "lucide-react";
 import emailjs from "@emailjs/browser";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackContactForm } from "@/hooks/useAnalytics";
 
 export default function ContactSection() {
   const { t } = useLanguage();
@@ -30,6 +31,7 @@ export default function ContactSection() {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
+    trackContactForm("submit");
 
     try {
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
@@ -51,9 +53,11 @@ export default function ContactSection() {
       await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       setIsSubmitted(true);
+      trackContactForm("success");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {
       console.error("Error sending email:", error);
+      trackContactForm("error");
       setError(t("contact.error"));
     } finally {
       setIsSubmitting(false);

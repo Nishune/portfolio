@@ -1,13 +1,12 @@
 "use client";
 
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
+import { getCurrentYear } from "@/utils";
+import { useScrollTo } from "@/hooks/useScrollTo";
 
 export default function Footer() {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
-  const currentYear = new Date().getFullYear();
+  const { scrollToTop } = useScrollTo();
+  const currentYear = getCurrentYear();
 
   return (
     <footer className="bg-gray-900 dark:bg-black text-white py-12">

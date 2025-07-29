@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Download } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { trackDownload, trackButtonClick } from "@/hooks/useAnalytics";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -35,22 +36,24 @@ export default function HeroSection() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
-            onClick={() =>
+            onClick={() => {
+              trackButtonClick("Contact", "hero");
               document
                 .querySelector("#contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
             className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
           >
             {t("hero.contact")}
           </button>
 
           <button
-            onClick={() =>
+            onClick={() => {
+              trackButtonClick("View Projects", "hero");
               document
                 .querySelector("#projects")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+                ?.scrollIntoView({ behavior: "smooth" });
+            }}
             className="border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 px-6 py-3 rounded-lg font-medium transition-colors duration-200"
           >
             {t("hero.projects")}
@@ -59,6 +62,7 @@ export default function HeroSection() {
           <a
             href="/CV - Rikard Engstrom.pdf"
             download="CV - Rikard Engstrom.pdf"
+            onClick={() => trackDownload("CV - Rikard Engstrom.pdf")}
             className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
           >
             <Download className="h-4 w-4" />
