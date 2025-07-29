@@ -219,7 +219,7 @@ export default function ContactSection() {
                 className="flex items-center gap-2 text-green-600 dark:text-green-400 hover:underline"
               >
                 <Phone className="h-4 w-4" />
-                073-040 64 65
+                +46 73-040 64 65
               </a>
             </div>
           </div>
