@@ -26,11 +26,11 @@ export default function Navigation() {
   return (
     <nav className="fixed top-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
+        <div className="flex items-center h-16">
+          <div className="flex-1">
             <button
               onClick={() => handleMenuClick("#home")}
-              className="group flex items-center space-x-1 cursor-pointer"
+              className="group flex items-center cursor-pointer"
             >
               <div className="relative">
                 <h1 className="relative text-xl font-bold px-2 py-1 bg-gradient-to-r from-slate-800 via-blue-800 to-slate-800 dark:from-slate-300 dark:via-blue-300 dark:to-slate-300 bg-clip-text text-transparent group-hover:animate-pulse transition-all duration-300">
@@ -42,8 +42,8 @@ export default function Navigation() {
             </button>
           </div>
 
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+          <div className="hidden md:flex flex-1 justify-center">
+            <div className="flex items-baseline space-x-8">
               {menuItems.map((item) => (
                 <button
                   key={item.href}
@@ -56,7 +56,7 @@ export default function Navigation() {
             </div>
           </div>
 
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2 flex-1 justify-end">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"

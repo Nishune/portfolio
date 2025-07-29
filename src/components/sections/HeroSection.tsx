@@ -15,6 +15,7 @@ export default function HeroSection() {
               src="/profilePicture.jpg"
               alt="Rikard Engström - Profilbild"
               fill
+              sizes="(max-width: 640px) 128px, 160px"
               className="rounded-full object-cover shadow-lg border-4 border-white dark:border-gray-800"
               priority
             />
@@ -22,7 +23,7 @@ export default function HeroSection() {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-          Mitt namn är{" "}
+          <span className="hidden sm:inline">Mitt namn är </span>
           <span className="text-blue-600 dark:text-blue-400">
             Rikard Engström
           </span>
